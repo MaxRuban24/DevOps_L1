@@ -66,4 +66,5 @@ case $1 in
     *)
         echo -e "Script usage:\n --all to list active hosts on required subnet\n --target to list open ports on required host"
     ;;
+
 esac

@@ -6,6 +6,7 @@ if [ -e $logfile ]; then
 
     while :
     do
+        # Setting up options menu according to the task
 
         echo "Please choose the option: "
         echo "----------------------------------"
@@ -21,17 +22,25 @@ if [ -e $logfile ]; then
 
             case $option in
 
+                # 1. From which ip were the most requests?
+
                 1) cat $logfile | awk '{ print $1 }' | uniq -c | sort -nr | head -5
                     printf "\n\n"
                     ;; 
                 
+                # 2. What is the most requested page?
+
                 2) cat $logfile | awk '{ print $7 }' | uniq -c | sort -nr | head -3
                     printf "\n\n"
                     ;;
 
+                # 3. How many requests were there from each ip?
+
                 3) cat $logfile | awk '{ print $1 }' | uniq -c | sort -nr | awk '{ print $1 " " "requests" " " "from:" " " $2 }'
                     printf "\n\n"
                     ;;
+                
+                # 4. What non-existent pages were clients referred to?
 
                 4) printf "Non-existent pages referred by clients: %s\n\n"
 
@@ -42,6 +51,8 @@ if [ -e $logfile ]; then
 
                 rm -f file
                     ;;
+
+                # 5. What time did site get the most requests?
 
                 5) requests () {
 
@@ -75,6 +86,8 @@ if [ -e $logfile ]; then
                     requests | sed -n "/$topreq/p" | sed -n 's/^/Site got most requests /p' | sed -n 's/and [0-9][0-9]\:00/&\-/p'
                     printf "\n\n"
                     ;; 
+                
+                # 6. What search bots have accessed the site?
 
                 6) cat $logfile | awk '/[B|b][O|o][T|t]/{print $1,$12,$13,$14,$15,$16,$17}'  | sed 's/\(\"Mozilla\/5\.0\|(compatible\;\|Linux x86\_64\)//g' | \
 
@@ -86,12 +99,8 @@ if [ -e $logfile ]; then
 
                 *) echo "Please choose [1-6] or type [x] to exit"
 
-
-
             esac
     done    
-
-
 
 else
     echo "Path is not valid. Please enter correct logfile path"

@@ -1,0 +1,67 @@
+2022/11/02 16:49:27 [6448] building file list
+2022/11/02 16:49:27 [6448] .d..t...... source_backup/.
+2022/11/02 16:49:27 [6448] >f+++++++++ source_backup/file1
+2022/11/02 16:49:27 [6448] >f+++++++++ source_backup/file2
+2022/11/02 16:49:27 [6448] >f..t...... source_backup/file5
+2022/11/02 16:49:27 [6448] >f+++++++++ source_backup/file6
+2022/11/02 16:49:27 [6448] >f+++++++++ source_backup/file7
+2022/11/02 16:49:27 [6448] >f+++++++++ source_backup/file8
+2022/11/02 16:49:27 [6448] >f+++++++++ source_backup/file9
+2022/11/02 16:49:27 [6448] sent 471 bytes  received 152 bytes  1.25K bytes/sec
+2022/11/02 16:49:27 [6448] total size is 7  speedup is 0.01
+2022/11/02 16:50:03 [6474] building file list
+2022/11/02 16:50:03 [6474] *deleting   file9
+2022/11/02 16:50:03 [6474] *deleting   file8
+2022/11/02 16:50:03 [6474] *deleting   file7
+2022/11/02 16:50:03 [6474] *deleting   file6
+2022/11/02 16:50:03 [6474] .d..t...... source_backup/.
+2022/11/02 16:50:03 [6474] sent 138 bytes  received 51 bytes  378.00 bytes/sec
+2022/11/02 16:50:03 [6474] total size is 7  speedup is 0.04
+2022/11/02 17:25:48 [6870] building file list
+2022/11/02 17:25:48 [6870] .d..t...... source_backup/.
+2022/11/02 17:25:48 [6870] >f+++++++++ source_backup/file10
+2022/11/02 17:25:48 [6870] >f+++++++++ source_backup/file6
+2022/11/02 17:25:48 [6870] >f+++++++++ source_backup/file7
+2022/11/02 17:25:48 [6870] >f+++++++++ source_backup/file8
+2022/11/02 17:25:48 [6870] >f+++++++++ source_backup/file9
+2022/11/02 17:25:48 [6870] sent 413 bytes  received 114 bytes  1.05K bytes/sec
+2022/11/02 17:25:48 [6870] total size is 7  speedup is 0.01
+2022/11/02 17:44:01 [7388] building file list
+2022/11/02 17:44:01 [7388] *deleting   file5
+2022/11/02 17:44:01 [7388] *deleting   file4
+2022/11/02 17:44:01 [7388] *deleting   file3
+2022/11/02 17:44:01 [7388] *deleting   file2
+2022/11/02 17:44:01 [7388] *deleting   file1
+2022/11/02 17:44:01 [7388] .d..t...... home/max/DevOps_L1/linux_bash_task/source_backup/.
+2022/11/02 17:44:01 [7388] sent 126 bytes  received 60 bytes  372.00 bytes/sec
+2022/11/02 17:44:01 [7388] total size is 0  speedup is 0.00
+2022/11/02 17:45:01 [7394] building file list
+2022/11/02 17:45:01 [7394] sent 123 bytes  received 12 bytes  270.00 bytes/sec
+2022/11/02 17:45:01 [7394] total size is 0  speedup is 0.00
+2022/11/02 17:46:01 [7402] building file list
+2022/11/02 17:46:01 [7402] sent 123 bytes  received 12 bytes  270.00 bytes/sec
+2022/11/02 17:46:01 [7402] total size is 0  speedup is 0.00
+2022/11/02 17:47:01 [7411] building file list
+2022/11/02 17:47:01 [7411] sent 123 bytes  received 12 bytes  270.00 bytes/sec
+2022/11/02 17:47:01 [7411] total size is 0  speedup is 0.00
+2022/11/02 17:48:01 [7429] building file list
+2022/11/02 17:48:01 [7429] sent 123 bytes  received 12 bytes  270.00 bytes/sec
+2022/11/02 17:48:01 [7429] total size is 0  speedup is 0.00
+2022/11/02 17:49:01 [7457] building file list
+2022/11/02 17:49:01 [7457] *deleting   file9
+2022/11/02 17:49:01 [7457] *deleting   file8
+2022/11/02 17:49:01 [7457] *deleting   file10
+2022/11/02 17:49:01 [7457] .d..t...... home/max/DevOps_L1/linux_bash_task/source_backup/.
+2022/11/02 17:49:01 [7457] >f+++++++++ home/max/DevOps_L1/linux_bash_task/source_backup/file1
+2022/11/02 17:49:01 [7457] >f+++++++++ home/max/DevOps_L1/linux_bash_task/source_backup/file2
+2022/11/02 17:49:01 [7457] >f+++++++++ home/max/DevOps_L1/linux_bash_task/source_backup/file3
+2022/11/02 17:49:01 [7457] >f+++++++++ home/max/DevOps_L1/linux_bash_task/source_backup/file4
+2022/11/02 17:49:01 [7457] >f+++++++++ home/max/DevOps_L1/linux_bash_task/source_backup/file5
+2022/11/02 17:49:01 [7457] sent 365 bytes  received 142 bytes  1.01K bytes/sec
+2022/11/02 17:49:01 [7457] total size is 0  speedup is 0.00
+2022/11/02 17:50:01 [7490] building file list
+2022/11/02 17:50:01 [7490] sent 163 bytes  received 12 bytes  350.00 bytes/sec
+2022/11/02 17:50:01 [7490] total size is 0  speedup is 0.00
+2022/11/02 17:51:01 [7510] building file list
+2022/11/02 17:51:01 [7510] sent 163 bytes  received 12 bytes  350.00 bytes/sec
+2022/11/02 17:51:01 [7510] total size is 0  speedup is 0.00
