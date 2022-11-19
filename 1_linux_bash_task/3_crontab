@@ -21,4 +21,5 @@ SHELL=/bin/sh
 47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
 52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
 #
-* * * * *   max     /home/max/DevOps_L1/linux_bash_task/3_files_backup.sh /home/max/DevOps_L1/linux_bash_task/source_backup/ /tmp/target_backup/ > /dev/null 2>&1
+* * * * *   max     /home/max/DevOps_L1/linux_bash_task/3_files_backup.sh \ 
+/home/max/DevOps_L1/linux_bash_task/source_backup/ /tmp/target_backup/ > /dev/null 2>&1
