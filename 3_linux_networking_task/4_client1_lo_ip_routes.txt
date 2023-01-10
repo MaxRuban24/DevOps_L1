@@ -1,0 +1,22 @@
+4. На віртуальному інтерфейсу lo Client_1 призначити дві ІР адреси за таким
+правилом: 172.17.D+10.1/24 та 172.17.D+20.1/24. Налаштувати маршрутизацію
+таким чином, щоб трафік з Client_2 до 172.17.D+10.1 проходив через Server_1, а до
+172.17.D+20.1 через Net4. Для перевірки використати traceroute.
+
+on Client_2:
+    ip route
+    172.17.34.0/24 via 10.11.93.2 dev eth1 metric 101 
+    172.17.44.0/24 via 172.16.24.2 dev eth2 
+
+    via Server_1:
+    [vagrant@client2 ~]$ traceroute -n 172.17.34.1
+    traceroute to 172.17.34.1 (172.17.34.1), 30 hops max, 60 byte packets
+    1  10.11.93.2  0.981 ms  0.833 ms  0.404 ms
+    2  172.17.34.1  0.612 ms  0.520 ms  0.426 ms
+
+    via Net4:
+    [vagrant@client2 ~]$ traceroute -n 172.17.44.1
+    traceroute to 172.17.44.1 (172.17.44.1), 30 hops max, 60 byte packets
+    1  172.17.44.1  0.897 ms  0.769 ms  0.444 ms
+
+

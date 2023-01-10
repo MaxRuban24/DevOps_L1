@@ -1,0 +1,18 @@
+7. Налаштуйте на Server_1 firewall таким чином:
+• Дозволено підключатись через SSH з Client_1 та заборонено з Client_2
+• З Client_2 на 172.17.34.1 ping проходив, а на 172.17.44.1 не проходив
+
+vagrant@server1:~$ sudo iptables -L
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+ACCEPT     all  --  anywhere             anywhere             state RELATED,ESTABLISHED
+DROP       icmp --  10.11.93.11          172.17.44.1         
+ACCEPT     icmp --  anywhere             anywhere            
+ACCEPT     tcp  --  10.93.24.12          anywhere             tcp dpt:ssh
+DROP       all  --  anywhere             anywhere            
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         

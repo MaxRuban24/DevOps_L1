@@ -1,0 +1,28 @@
+6. Налаштувати SSH сервіс таким чином, щоб Client_1 та Client_2 могли
+підключатись до Server_1 та один до одного.
+
+Client1 to Server1:
+vagrant@client1:~$ ssh -i .ssh/server1_rsa vagrant@10.93.24.2
+Linux server1 5.10.0-20-amd64 #1 SMP Debian 5.10.158-2 (2022-12-13) x86_64
+Last login: Sun Jan  8 16:47:30 2023 from 10.11.93.11
+vagrant@server1:~$ 
+
+
+Client2 to Server1:
+[vagrant@client2 ~]$ ssh -i .ssh/server1_rsa vagrant@10.11.93.2
+Linux server1 5.10.0-20-amd64 #1 SMP Debian 5.10.158-2 (2022-12-13) x86_64
+Last login: Sun Jan  8 16:36:07 2023 from 10.93.24.12
+vagrant@server1:~$ 
+
+Client1 to Client2:
+vagrant@client1:~$ ssh -i .ssh/client2_rsa vagrant@10.11.93.11 
+Last login: Sun Jan  8 14:18:56 2023
+[vagrant@client2 ~]$ 
+
+Client2 to Client1:
+[vagrant@client2 ~]$ ssh -i .ssh/client1_rsa vagrant@10.93.24.12
+Welcome to Ubuntu 14.04.6 LTS (GNU/Linux 3.13.0-170-generic x86_64)
+Last login: Sun Jan  8 17:07:21 2023 from 10.93.24.2
+vagrant@client1:~$
+
+

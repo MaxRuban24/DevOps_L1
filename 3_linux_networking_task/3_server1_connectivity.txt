@@ -1,0 +1,36 @@
+Route table
+default via 10.0.2.2 dev eth0 
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 
+10.11.93.0/24 dev eth3 proto kernel scope link src 10.11.93.2 
+10.93.24.0/24 dev eth2 proto kernel scope link src 10.93.24.2 
+10.100.0.0/24 dev eth1 proto kernel scope link src 10.100.0.5 
+
+
+PING 10.93.24.12 (10.93.24.12) 56(84) bytes of data.
+64 bytes from 10.93.24.12: icmp_seq=1 ttl=64 time=0.962 ms
+64 bytes from 10.93.24.12: icmp_seq=2 ttl=64 time=1.12 ms
+64 bytes from 10.93.24.12: icmp_seq=3 ttl=64 time=1.07 ms
+
+--- 10.93.24.12 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 0.962/1.048/1.118/0.064 ms
+
+
+PING 10.11.93.11 (10.11.93.11) 56(84) bytes of data.
+64 bytes from 10.11.93.11: icmp_seq=1 ttl=64 time=0.787 ms
+64 bytes from 10.11.93.11: icmp_seq=2 ttl=64 time=0.947 ms
+64 bytes from 10.11.93.11: icmp_seq=3 ttl=64 time=0.845 ms
+
+--- 10.11.93.11 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2023ms
+rtt min/avg/max/mdev = 0.787/0.859/0.947/0.066 ms
+
+
+PING 172.16.24.2 (172.16.24.2) 56(84) bytes of data.
+64 bytes from 172.16.24.2: icmp_seq=1 ttl=63 time=0.598 ms
+64 bytes from 172.16.24.2: icmp_seq=2 ttl=63 time=0.571 ms
+64 bytes from 172.16.24.2: icmp_seq=3 ttl=63 time=1.04 ms
+
+--- 172.16.24.2 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2055ms
+rtt min/avg/max/mdev = 0.571/0.735/1.037/0.213 ms

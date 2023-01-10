@@ -1,0 +1,24 @@
+5. Розрахувати спільну адресу та маску (summarizing) адрес 172.17.D+10.1 та
+172.17.D+20.1, при чому префікс має бути максимально можливим. Видалити
+маршрути, встановлені на попередньому кроці та замінити їх об’єднаним
+маршрутом, якій має проходити через Server_1.
+
+Summarizing address - 172.17.32.0/20 (255.255.240.0)
+
+On Client_2:
+    sudo ip route add 172.17.32.0/20 via 10.11.93.2 metric 101
+
+On Server_1:
+    sudo ip route add 172.17.32.0/20 via 10.93.24.12
+
+Result from Client_2:
+    [vagrant@client2 ~]$ traceroute -n 172.17.34.1
+    traceroute to 172.17.34.1 (172.17.34.1), 30 hops max, 60 byte packets
+    1  10.11.93.2  0.965 ms  1.178 ms  1.043 ms
+    2  172.17.34.1  1.847 ms  1.579 ms  2.128 ms
+    
+    [vagrant@client2 ~]$ traceroute -n 172.17.44.1
+    traceroute to 172.17.44.1 (172.17.44.1), 30 hops max, 60 byte packets
+    1  10.11.93.2  0.512 ms  0.468 ms  0.440 ms
+    2  172.17.44.1  0.741 ms  0.710 ms  0.685 ms
+

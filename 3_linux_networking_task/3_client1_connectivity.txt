@@ -1,0 +1,36 @@
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.93.24.2      0.0.0.0         UG    0      0        0 eth1
+10.11.93.0      10.93.24.2      255.255.255.0   UG    1      0        0 eth1
+10.11.93.0      172.16.24.3     255.255.255.0   UG    10     0        0 eth2
+10.93.24.0      0.0.0.0         255.255.255.0   U     0      0        0 eth1
+172.16.24.0     0.0.0.0         255.255.255.0   U     0      0        0 eth2
+
+
+PING 10.11.93.11 (10.11.93.11) 56(84) bytes of data.
+64 bytes from 10.11.93.11: icmp_seq=1 ttl=63 time=0.975 ms
+64 bytes from 10.11.93.11: icmp_seq=2 ttl=63 time=1.98 ms
+64 bytes from 10.11.93.11: icmp_seq=3 ttl=63 time=1.97 ms
+
+--- 10.11.93.11 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 0.975/1.645/1.982/0.473 ms
+
+
+PING 172.16.24.3 (172.16.24.3) 56(84) bytes of data.
+64 bytes from 172.16.24.3: icmp_seq=1 ttl=64 time=1.01 ms
+64 bytes from 172.16.24.3: icmp_seq=2 ttl=64 time=0.945 ms
+64 bytes from 172.16.24.3: icmp_seq=3 ttl=64 time=0.979 ms
+
+--- 172.16.24.3 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+rtt min/avg/max/mdev = 0.945/0.979/1.013/0.027 ms
+
+
+traceroute to 10.11.93.11 (10.11.93.11), 30 hops max, 60 byte packets
+ 1  10.93.24.2 (10.93.24.2)  0.746 ms  0.695 ms  0.660 ms
+ 2  10.11.93.11 (10.11.93.11)  1.374 ms  1.251 ms  1.359 ms
+
+
+traceroute to 172.16.24.3 (172.16.24.3), 30 hops max, 60 byte packets
+ 1  172.16.24.3 (172.16.24.3)  0.426 ms  0.407 ms  0.394 ms
