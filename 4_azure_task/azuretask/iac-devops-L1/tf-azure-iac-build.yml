@@ -1,0 +1,77 @@
+trigger: 
+- master
+
+# First job to upload terraform file as artifact
+jobs:
+- job: iac_artifacts
+  displayName: 'terraform artifacs'
+  pool:
+    name: 'Azure Pipelines'
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+    inputs:
+      contents: '**/**.tf'
+      targetFolder: '$(build.artifactstagingdirectory)'
+
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish Artifact: drop'
+    inputs:
+      targetPath: '$(build.artifactstagingdirectory)'
+      artifactName: 'drop'
+      artifactType: 'pipeline'
+
+# Second job to download artifact and perform iac deploy by terraform to Azure
+- job: iac_deploy
+  displayName: 'terraform deploy'
+  dependsOn: [iac_artifacts]
+  pool:
+    name: 'Azure Pipelines'
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - task: TerraformInstaller@0
+    displayName: 'Use Terraform latest'
+
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download terraform artifact'
+    inputs:
+      artifactName: 'drop'
+      targetPath: '$(Pipeline.WorkSpace)/terraform'
+
+  - task: TerraformCLI@0
+    displayName: 'terraform init'
+    inputs:
+      command: init
+      workingDirectory: '$(Pipeline.WorkSpace)/terraform'
+      backendType: azurerm
+      backendServiceArm: 'Visual Studio Enterprise Subscription – MPN (11e13cb9-fe29-4238-8257-1bc6097180cc)'
+      backendAzureRmResourceGroupName: 'iac-deploy'
+      backendAzureRmStorageAccountName: 'iacstoragel1'
+      backendAzureRmContainerName: 'tfstate'
+      backendAzureRmKey: terraform.tfstate
+
+  - task: TerraformCLI@0
+    displayName: 'terraform validate'
+    inputs:
+      command: validate
+      workingDirectory: '$(Pipeline.WorkSpace)/terraform'
+
+  - task: TerraformCLI@0
+    displayName: 'terraform plan'
+    inputs:
+      command: plan
+      workingDirectory: '$(Pipeline.WorkSpace)/terraform'
+      environmentServiceName: 'Visual Studio Enterprise Subscription – MPN (11e13cb9-fe29-4238-8257-1bc6097180cc)'
+      publishPlanResults: 'terraform_plan_view'
+      commandOptions: '-out=$(System.DefaultWorkingDirectory)/terraform.tfplan'
+
+  - task: TerraformCLI@0
+    displayName: 'terraform apply'
+    inputs:
+      command: apply
+      workingDirectory: '$(Pipeline.WorkSpace)/terraform'
+      environmentServiceName: 'Visual Studio Enterprise Subscription – MPN (11e13cb9-fe29-4238-8257-1bc6097180cc)'
+      commandOptions: '-auto-approve'

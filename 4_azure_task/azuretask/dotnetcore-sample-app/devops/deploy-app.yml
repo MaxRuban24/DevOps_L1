@@ -1,0 +1,65 @@
+trigger: 
+- none
+
+variables:
+  solution: '**/*.csproj'
+  buildConfiguration: 'Release'
+
+jobs:
+- job: Build
+  displayName: 'Build webapp'
+  pool:
+    name: 'Azure Pipelines'
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core SDK'
+    inputs:
+      version: 6.x
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Restore'
+    inputs:
+      command: 'restore'
+      projects: '$(solution)'
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Build'
+    inputs:
+      command: 'build'
+      projects: '$(solution)'
+      arguments: '--configuration $(buildConfiguration)'
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: publish
+      publishWebProjects: True
+      arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+      zipAfterPublish: True
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)' 
+      artifactName: 'webapp'
+
+- job: Deploy
+  displayName: 'Deploy webapp'
+  dependsOn: [Build]
+  pool:
+    name: 'Azure Pipelines'
+    vmImage: 'ubuntu-latest'
+  
+  steps:
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download webapp artifact'
+    inputs:
+      artifactName: 'webapp'
+      targetPath: '$(Pipeline.WorkSpace)/deploy'
+  
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'Visual Studio Enterprise Subscription – MPN (11e13cb9-fe29-4238-8257-1bc6097180cc)'
+      appType: 'webAppLinux'
+      appName: 'learn-webapp-1'
+      package: '$(Pipeline.WorkSpace)/deploy/*.zip'
